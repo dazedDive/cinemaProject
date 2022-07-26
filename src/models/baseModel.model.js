@@ -1,5 +1,8 @@
 export class BaseModel{
+    
     id=-1;
+    isDeleted = false;
+    
     assign(props){
         for(const key in props){
             if(!this.hasOwnProperty(key)){
@@ -12,7 +15,7 @@ export class BaseModel{
         if (key=="id"){
             return this
         }
-        this[key]==value;
+        this[key]=value;
         return this;
     }
 }

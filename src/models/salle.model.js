@@ -2,7 +2,7 @@ import { BaseModel } from "./baseModel.model.js";
 import { DataManager } from "../helpers/dataManager.helper.js";
 
 export class Salle extends BaseModel{
-    
+
     nbPlacesMax = 0;
     theme = "";
  
@@ -10,7 +10,7 @@ export class Salle extends BaseModel{
         super(props);
         this.assign(props);
     }
-
+    
     getSeances(){
         const dataManager = new DataManager();
         return dataManager.getAll("seances").filter(seances => this.id == seances.salle_id);
