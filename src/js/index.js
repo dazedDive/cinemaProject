@@ -4,8 +4,18 @@ import { DataManager } from "../helpers/dataManager.helper.js"
 const app = new App();
 app.start();
 
-const dataMngr = new DataManager(["films", "salles", "seances"]);
+const dataMngr = new DataManager(["film", "salle", "seance"]);
 dataMngr.initDataStorage();
 
-console.log();
 
+let test = dataMngr.getOne('salle', 3);
+
+console.log(test);
+
+dataMngr.softDelete(test);
+
+console.log(test);
+
+dataMngr.hardDelete(test);
+
+console.log(dataMngr.getAll('salle'));
