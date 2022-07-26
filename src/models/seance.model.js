@@ -1,9 +1,8 @@
 import { BaseModel } from "./baseModel.model.js"
-import { DataManager } from "./helpers/dataManager.helper.js";
+import { DataManager } from "../helpers/dataManager.helper.js";
 
 export class Seance extends BaseModel {
-
-    id = -1;
+    
     nbPlacesdispo = 0;
     date = "";
     horaires = 0;
