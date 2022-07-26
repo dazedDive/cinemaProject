@@ -1,4 +1,4 @@
-import { BaseModel } from "./baseModel.model";
+import { BaseModel } from "./baseModel.model.js";
 import { DataManager } from "./helpers/dataManager.helper.js"
 
 export class Film extends BaseModel{
