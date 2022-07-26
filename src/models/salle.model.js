@@ -3,7 +3,6 @@ import { DataManager } from "../helpers/dataManager.helper.js";
 
 export class Salle extends BaseModel{
     
-    id = 1;
     nbPlacesMax = 0;
     theme = "";
  
