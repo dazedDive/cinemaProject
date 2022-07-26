@@ -1,5 +1,5 @@
-import { BaseModel } from "./baseModel.model.js"
-import { DataManager } from "./helpers/dataManager.helper";
+import { BaseModel } from "./baseModel.model.js";
+import { DataManager } from "../helpers/dataManager.helper.js";
 
 export class Salle extends BaseModel{
 
