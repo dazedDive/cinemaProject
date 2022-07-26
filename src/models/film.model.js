@@ -1,7 +1,7 @@
-import { baseModel } from "./baseModel.model";
-import { Datamanager } from "./helpers/dataManager.hemper.js"
+import { BaseModel } from "./baseModel.model.js";
+import { DataManager } from "./helpers/dataManager.helper.js"
 
-export class Film extends baseModel{
+export class Film extends BaseModel{
     titre="";
     image="";
     synopsis=""
@@ -12,8 +12,8 @@ export class Film extends baseModel{
     }
 
     getSeance =()=>{
-        const newdatamgnr = new Datamanager
-        const getSeance = data.getAll("seances").filter(seance=>seance.film_id==this.id)
+        const newdatamgnr = new DataManager()
+        const getSeance = newdatamgnr.getAll("seances").filter(seance=>seance.film_id==this.id)
         return getSeance
     }
 }
