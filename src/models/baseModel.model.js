@@ -15,7 +15,7 @@ export class BaseModel{
         if (key=="id"){
             return this
         }
-        this[key]==value;
+        this[key]=value;
         return this;
     }
 }

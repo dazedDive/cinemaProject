@@ -17,7 +17,7 @@ export class DataManager {
             dataStorage[file + "Data"] = await this.readJsonFile(file);
         }
         localStorage.setItem("data", JSON.stringify(dataStorage));
-        // console.log("localStorage data initialized" , dataStorage);
+        // console.log("localStorage data initialized", dataStorage);
     }
 
     readJsonFile = async (file) => {
@@ -29,8 +29,6 @@ export class DataManager {
             .then(text => {
                 items = JSON.parse(text);
             });
-            
-        console.log(items);
         return items;
     }
 
@@ -77,7 +75,7 @@ export class DataManager {
     }
 
     softDelete(model){
-        model.setProps('isDeleted', false);
+        model.setProps('isDeleted', true);
         this.update(model);
     }
     
@@ -89,9 +87,24 @@ export class DataManager {
         const table = model.constructor.name.toLowerCase();
         const data = JSON.parse(localStorage.getItem('data'));
         const dataTable = data[table + 'Data'];
-        let row = dataTable?.find(item => item.id == model.id);
         
-        console.log(dataTable, row);
+        for(const d in dataTable){
+            if(dataTable[d].id == model.id){
+                dataTable.splice(d, 1);
+                break;
+            }
+        }
+        localStorage.setItem('data', JSON.stringify(data));
+    }
+    
+    create = (model) => {
+        const table = model.constructor.name.toLowerCase();
+        if(!this.getOne(table, model.id)){
+            const data = JSON.parse(localStorage.getItem('data'));
+            data[table + 'Data'].push(model);
+            
+            localStorage.setItem('data', JSON.stringify(data));
+        }
     }
     
 }
