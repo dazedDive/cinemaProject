@@ -2,7 +2,7 @@ import { BaseModel } from "./baseModel.model.js";
 import { DataManager } from "../helpers/dataManager.helper.js";
 
 export class Salle extends BaseModel{
-    
+
     nbPlacesMax = 0;
     theme = "";
  
