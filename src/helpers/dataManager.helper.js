@@ -17,7 +17,7 @@ export class DataManager {
             dataStorage[file + "Data"] = await this.readJsonFile(file);
         }
         localStorage.setItem("data", JSON.stringify(dataStorage));
-        console.log("localStorage data initialized" , dataStorage);
+        // console.log("localStorage data initialized" , dataStorage);
     }
 
     readJsonFile = async (file) => {
@@ -29,6 +29,8 @@ export class DataManager {
             .then(text => {
                 items = JSON.parse(text);
             });
+            
+        console.log(items);
         return items;
     }
 
@@ -36,11 +38,11 @@ export class DataManager {
         const data = JSON.parse(localStorage.getItem('data'));
         return data[table + "Data"]?.map(row => {
             switch(table){
-                case "seances":
+                case "seance":
                     return new Seance(row);
-                case "salles":
+                case "salle":
                     return new Salle(row);
-                case "films":
+                case "film":
                     return new Film(row);
             }
         });
@@ -53,11 +55,11 @@ export class DataManager {
             return undefined;
         }
         switch(table){
-            case "seances":
+            case "seance":
                 return new Seance(row);
-            case "salles":
+            case "salle":
                 return new Salle(row);
-            case "films":
+            case "film":
                 return new Film(row);
         }
     }
@@ -71,11 +73,25 @@ export class DataManager {
             row[key] = model[key]
         }
         localStorage.setItem("data", JSON.stringify(data)); // Je sauvegarde les données en localStorage
-        console.log("data row updated", model);
+        // console.log("data row updated", model);
     }
 
     softDelete(model){
-       model.isDeleted = true;
-       this.update(model);
+        model.setProps('isDeleted', false);
+        this.update(model);
     }
+    
+    hardDelete = (model) => {
+        if(!model.isDeleted){
+            return;
+        }
+        
+        const table = model.constructor.name.toLowerCase();
+        const data = JSON.parse(localStorage.getItem('data'));
+        const dataTable = data[table + 'Data'];
+        let row = dataTable?.find(item => item.id == model.id);
+        
+        console.log(dataTable, row);
+    }
+    
 }

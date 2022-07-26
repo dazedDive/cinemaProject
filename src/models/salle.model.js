@@ -10,7 +10,7 @@ export class Salle extends BaseModel{
         super(props);
         this.assign(props);
     }
-
+    
     getSeances(){
         const dataManager = new DataManager();
         return dataManager.getAll("seances").filter(seances => this.id == seances.salle_id);
