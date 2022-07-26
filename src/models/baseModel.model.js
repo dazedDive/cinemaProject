@@ -1,4 +1,4 @@
-export class baseModel{
+export class BaseModel{
     id=-1;
     assign(props){
         for(const key in props){
