@@ -1,5 +1,5 @@
 import { BaseModel } from "./baseModel.model.js"
-import { DataManager } from "./helpers/dataManager.helper";
+import { DataManager } from "./helpers/dataManager.helper.js";
 
 export class Seance extends BaseModel {
 
@@ -17,6 +17,11 @@ export class Seance extends BaseModel {
 
     getFilm(){
         const dataManager = new DataManager();
-        // return dataManager.getAll("films").filter(film => film_id == this.id);
+        return dataManager.getOne("films", this.film_id);
+    }
+
+    getSalle(){
+        const dataManager = new DataManager();
+        return dataManager.getOne("salles", this.salle_id);
     }
 }
